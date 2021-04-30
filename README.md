@@ -15,9 +15,9 @@ To install the tool suite, first download a tagged release from the [tags](https
 
 ### Configuration
 There are currently three configurable options in config.ini:
-install_path: The absolute filepath to the directory where the MJSL OBS TOOLS directory is located
-contest_id: The contest id from the api for the contest you wish to grab data for. Set to /mjg/ league 2 by default
-api_url: http://riichi.moe/api by default
+* install_path: The absolute filepath to the directory where the MJSL OBS TOOLS directory is located
+* contest_id: The contest id from the api for the contest you wish to grab data for. Set to /mjg/ league 2 by default
+* api_url: http://riichi.moe/api by default
 
 ## Usage
 Once configuration is complete, execute the tools by launching go.exe. You will be prompted to select which match you wish to get data for.
