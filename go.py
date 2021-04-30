@@ -40,7 +40,7 @@ for side in closest["plannedMatches"]:
 
 # Copy team logos for selected teams from Source Images to Schedule Images
 for i in range(0, len(selected_teams)):
-    shutil.copy(f"{work_dir}MJSL OBS TOOLS/Source Images/{selected_teams[i]['name']}.png", f"{work_dir}/MJSL OBS TOOLS/Script Images/Schedule/Schedule-{i+1:02d}.png")
+    shutil.copy(f"{work_dir}MJSL OBS TOOLS/Source Images/{selected_teams[i]['_id']}.png", f"{work_dir}/MJSL OBS TOOLS/Script Images/Schedule/Schedule-{i+1:02d}.png")
 
 # Generate Script Text files
 utc = pytz.utc
@@ -48,6 +48,10 @@ match_time = datetime.datetime.fromtimestamp(closest["scheduledTime"] / 1000)
 with open(f"{work_dir}/MJSL OBS TOOLS/Script Text/General/Time.txt", "w") as f:
     time_formatted = match_time.astimezone(utc).strftime("%H:%M UTC")
     f.write(time_formatted)
+
+with open(f"{work_dir}/MJSL OBS TOOLS/Script Text/General/Session.txt", "w") as f:
+    session_name = closest['name']
+    f.write(session_name)
 
 print(
     f"Match 1: {selected_teams[0]['name']}, {selected_teams[1]['name']}, {selected_teams[2]['name']}, {selected_teams[3]['name']}"
