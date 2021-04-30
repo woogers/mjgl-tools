@@ -96,6 +96,27 @@ pycodestyle = ">=2.7.0,<2.8.0"
 pyflakes = ">=2.3.0,<2.4.0"
 
 [[package]]
+name = "fonttools"
+version = "4.22.1"
+description = "Tools to manipulate font files"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.extras]
+all = ["fs (>=2.2.0,<3)", "lxml (>=4.0,<5)", "zopfli (>=0.1.4)", "lz4 (>=1.7.4.2)", "matplotlib", "sympy", "skia-pathops (>=0.5.0)", "brotlicffi (>=0.8.0)", "scipy", "brotli (>=1.0.1)", "munkres", "unicodedata2 (>=13.0.0)", "xattr"]
+graphite = ["lz4 (>=1.7.4.2)"]
+interpolatable = ["scipy", "munkres"]
+lxml = ["lxml (>=4.0,<5)"]
+pathops = ["skia-pathops (>=0.5.0)"]
+plot = ["matplotlib"]
+symfont = ["sympy"]
+type1 = ["xattr"]
+ufo = ["fs (>=2.2.0,<3)"]
+unicode = ["unicodedata2 (>=13.0.0)"]
+woff = ["zopfli (>=0.1.4)", "brotlicffi (>=0.8.0)", "brotli (>=1.0.1)"]
+
+[[package]]
 name = "future"
 version = "0.18.2"
 description = "Clean single-source support for Python 3 and 2"
@@ -333,7 +354,7 @@ brotli = ["brotlipy (>=0.6.0)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "d674bd2d9407d89c88afb33de557644a22c738ba6a4fb6797cec3cbcc7b667dc"
+content-hash = "12f1b56a15792ee0556ffb5adcc376ca11c4554f26f13c187a66f1cf8c50be3d"
 
 [metadata.files]
 altgraph = [
@@ -371,6 +392,10 @@ cycler = [
 flake8 = [
     {file = "flake8-3.9.1-py2.py3-none-any.whl", hash = "sha256:3b9f848952dddccf635be78098ca75010f073bfe14d2c6bda867154bea728d2a"},
     {file = "flake8-3.9.1.tar.gz", hash = "sha256:1aa8990be1e689d96c745c5682b687ea49f2e05a443aff1f8251092b0014e378"},
+]
+fonttools = [
+    {file = "fonttools-4.22.1-py3-none-any.whl", hash = "sha256:cd9bb655261d85ff530eced8b1bc128d6f132415aad24ba03bc8e673235428e4"},
+    {file = "fonttools-4.22.1.zip", hash = "sha256:fea6bb9d1d23a94d5e8fa6238214538a89d4333e340025a95a16b77ddb191e6f"},
 ]
 future = [
     {file = "future-0.18.2.tar.gz", hash = "sha256:b1bead90b70cf6ec3f0710ae53a525360fa360d306a86583adc6bf83a4db537d"},

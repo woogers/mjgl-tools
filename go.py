@@ -8,6 +8,17 @@ import matplotlib.pyplot as plt
 import pytz
 import requests
 import configparser
+from fontTools.ttLib import TTFont
+import matplotlib.font_manager as mfm
+
+
+def char_in_font(uc_char, font):
+    for cmap in font['cmap'].tables:
+        if cmap.isUnicode():
+            if ord(uc_char) in cmap.cmap:
+                return True
+    return False
+
 
 # Config parameters
 cp = configparser.RawConfigParser()
@@ -30,7 +41,8 @@ closest = min(sessions, key=lambda x: abs(int(x["scheduledTime"]) - now))
 url = f"{api_url}/contests/{contest_id}"
 r = requests.get(url)
 contest = json.loads(r.content)
-teams = contest["teams"]
+teams = contest["teams"]            
+
 selected_teams = []
 
 for side in closest["plannedMatches"]:
@@ -89,15 +101,29 @@ for session in sessions:
 
 matches_axis.extend(range(0, matches_passed + 1))
 
+font_info = [(f.fname, f.name) for f in mfm.fontManager.ttflist]
+font_path = None
+
 for team in teams:
     scores = [0]
     for i in range(0, matches_passed):
         scores.append(sessions[i]["aggregateTotals"][team["_id"]] / 1000)
+        
+    # Check for unicode team names because why god why
+    for x in team['name']:
+        if ord(x) > 127:
+            while not font_path:
+                for i, font in enumerate(font_info):
+                    if char_in_font(x, TTFont(font[0], fontNumber=0)):
+                        font_path = font[0]
+
     plt.plot(
         matches_axis, scores, label=f"{team['name']}: {scores[len(scores) - 1]:.1f}"
     )
 
-plt.legend(bbox_to_anchor=(1, 1), loc="upper left")
+prop = mfm.FontProperties(fname=font_path)
+
+plt.legend(bbox_to_anchor=(1, 1), loc="upper left", prop=prop)
 plt.savefig(
     f"{work_dir}\\MJSL OBS TOOLS\\Script Images\\Ranking\\rankings.png",
     bbox_inches="tight",
