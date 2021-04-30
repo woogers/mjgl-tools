@@ -70,12 +70,12 @@ selected_match = int(input("Select your match: "))
 for i in range(0, int(len(selected_teams) / 2)):
     if selected_match % 2 == 0:
         shutil.copy(
-            f"{work_dir}/MJSL OBS TOOLS/Source Images/{selected_teams[i+4]['name']}.png",
+            f"{work_dir}/MJSL OBS TOOLS/Source Images/{selected_teams[i+4]['_id']}.png",
             f"{work_dir}/MJSL OBS TOOLS/Script Images/Match/Match-{i+1:02d}.png",
         )
     else:
         shutil.copy(
-            f"{work_dir}/MJSL OBS TOOLS/Source Images/{selected_teams[i]['name']}.png",
+            f"{work_dir}/MJSL OBS TOOLS/Source Images/{selected_teams[i]['_id']}.png",
             f"{work_dir}/MJSL OBS TOOLS/Script Images/Match/Match-{i+1:02d}.png",
         )
 
