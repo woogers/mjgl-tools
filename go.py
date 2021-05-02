@@ -41,7 +41,7 @@ closest = min(sessions, key=lambda x: abs(int(x["scheduledTime"]) - now))
 url = f"{api_url}/contests/{contest_id}"
 r = requests.get(url)
 contest = json.loads(r.content)
-teams = contest["teams"]            
+teams = contest["teams"]
 
 selected_teams = []
 
@@ -92,14 +92,15 @@ for i in range(0, int(len(selected_teams) / 2)):
         )
 
 # Graph
-matches_axis = []
+matches_axis = ["Start"]
 matches_passed = 0
 
 for session in sessions:
     if session["scheduledTime"] < now:
+        matches_axis.append(session['name'])
         matches_passed += 1
 
-matches_axis.extend(range(0, matches_passed + 1))
+# matches_axis.extend(range(0, matches_passed + 1))
 
 font_info = [(f.fname, f.name) for f in mfm.fontManager.ttflist]
 font_path = None
@@ -108,7 +109,7 @@ for team in teams:
     scores = [0]
     for i in range(0, matches_passed):
         scores.append(sessions[i]["aggregateTotals"][team["_id"]] / 1000)
-        
+
     # Check for unicode team names because why god why
     for x in team['name']:
         if ord(x) > 127:
@@ -118,7 +119,7 @@ for team in teams:
                         font_path = font[0]
 
     plt.plot(
-        matches_axis, scores, label=f"{team['name']}: {scores[len(scores) - 1]:.1f}"
+        matches_axis, scores, label=f"{team['name']}: {scores[len(scores) - 1]:.1f}", color=f"#{team['color']}"
     )
 
 prop = mfm.FontProperties(fname=font_path)
