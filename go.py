@@ -1,15 +1,15 @@
 # commands: match show, match #, rankings, stats
 
+import configparser
 import datetime
 import json
 import shutil
 
+import matplotlib.font_manager as mfm
 import matplotlib.pyplot as plt
 import pytz
 import requests
-import configparser
 from fontTools.ttLib import TTFont
-import matplotlib.font_manager as mfm
 
 
 def char_in_font(uc_char, font):
@@ -112,14 +112,14 @@ sorted_teams = sorted(
     closest["aggregateTotals"].items(), key=lambda x: x[1], reverse=True
 )
 
-for steam in sorted_teams:
+for sorted_team in sorted_teams:
     scores = [0]
     for i in range(0, matches_passed):
-        scores.append(sessions[i]["aggregateTotals"][steam[0]] / 1000)
+        scores.append(sessions[i]["aggregateTotals"][sorted_team[0]] / 1000)
 
     # Get team info from contest
     contest_team = next(
-        (cteam for cteam in contest["teams"] if cteam["_id"] == steam[0])
+        (cteam for cteam in contest["teams"] if cteam["_id"] == sorted_team[0])
     )
 
     # Check for unicode team names because why god why
