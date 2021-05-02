@@ -105,13 +105,19 @@ for session in sessions:
 font_info = [(f.fname, f.name) for f in mfm.fontManager.ttflist]
 font_path = None
 
-for team in teams:
+# Sort teams score table from closest match
+sorted_teams = sorted(closest['aggregateTotals'].items(), key=lambda x: x[1], reverse=True)
+
+for steam in sorted_teams:
     scores = [0]
     for i in range(0, matches_passed):
-        scores.append(sessions[i]["aggregateTotals"][team["_id"]] / 1000)
+        scores.append(sessions[i]["aggregateTotals"][steam[0]] / 1000)
+
+    # Get team info from contest
+    contest_team = next((cteam for cteam in contest['teams'] if cteam['_id'] == steam[0]))
 
     # Check for unicode team names because why god why
-    for x in team['name']:
+    for x in contest_team['name']:
         if ord(x) > 127:
             while not font_path:
                 for i, font in enumerate(font_info):
@@ -119,7 +125,7 @@ for team in teams:
                         font_path = font[0]
 
     plt.plot(
-        matches_axis, scores, label=f"{team['name']}: {scores[len(scores) - 1]:.1f}", color=f"#{team['color']}"
+        matches_axis, scores, label=f"{contest_team['name']}: {scores[len(scores) - 1]:.1f}", color=f"#{contest_team['color']}"
     )
 
 prop = mfm.FontProperties(fname=font_path)
