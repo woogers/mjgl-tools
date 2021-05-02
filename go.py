@@ -14,11 +14,14 @@ from fontTools.ttLib import TTFont
 
 def char_in_font(uc_char, font):
     """See if a given unicode character is in a given font"""
-    for cmap in font["cmap"].tables:
-        if cmap.isUnicode():
-            if ord(uc_char) in cmap.cmap:
-                return True
-    return False
+    try:
+        for cmap in font["cmap"].tables:
+            if cmap.isUnicode():
+                if ord(uc_char) in cmap.cmap:
+                    return True
+        return False
+    except AssertionError:
+        return False
 
 
 # Config parameters
