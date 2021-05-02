@@ -5,7 +5,7 @@ description = "Tools for the MJG League"
 authors = ["woogers"]
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.8"
 requests = "^2.25.1"
 pytz = "^2021.1"
 matplotlib = "^3.4.1"
