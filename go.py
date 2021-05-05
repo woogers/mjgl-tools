@@ -26,10 +26,11 @@ cp = configparser.RawConfigParser()
 cp_path = "config.ini"
 cp.read(cp_path)
 
-work_dir = cp.get("config", "install_path")
-api_url = cp.get("config", "api_url")
-contest_id = cp.get("config", "contest_id")
-graph_transparent = cp.get("rankings", "graph_transparent")
+work_dir = cp.get("config", "install_path", fallback="C:\\")
+api_url = cp.get("config", "api_url", fallback="http://riichi.moe/api")
+contest_id = cp.get("config", "contest_id", fallback="60871d17b5d300559b24998d")
+graph_transparent = cp.get("rankings", "graph_transparent", fallback=True)
+bg_color = cp.get("rankings", "background_color", fallback="#FFFFFF")
 
 # Get league matches to find closest
 url = f"{api_url}/contests/{contest_id}/sessions"
@@ -141,11 +142,12 @@ for sorted_team in sorted_teams:
 
 prop = mfm.FontProperties(fname=font_path)
 
-plt.legend(bbox_to_anchor=(1, 1), loc="upper left", prop=prop)
+plt.legend(bbox_to_anchor=(1, 1), loc="upper left", prop=prop, facecolor=bg_color)
 plt.grid(axis="y")
 
 plt.savefig(
     f"{work_dir}\\MJSL OBS TOOLS\\Script Images\\Ranking\\rankings.png",
     bbox_inches="tight",
     transparent=graph_transparent,
+    facecolor=bg_color,
 )
