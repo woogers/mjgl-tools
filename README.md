@@ -19,11 +19,18 @@ To install the tool suite, first download a tagged release from the [releases](h
 
 ### Configuration
 
-There are currently three configurable options in config.ini:
+There are currently five configurable options in config.ini:
+
+#### [config]
 
 * install_path: The absolute filepath to the directory where the MJSL OBS TOOLS directory is located. Default value: `C:\`
 * contest_id: The contest id from the api for the contest you wish to grab data for. Default value: `60871d17b5d300559b24998d` (/mjg/ league 2)
 * api_url: the url for the api to get data from. Default value: `http://riichi.moe/api`
+
+#### [rankings]
+
+* graph_transparent: Whether or not the generated rankings graph image should be transparent. Default value: `True`
+*background_color: The background color of the generated rankings graph image. Accepts [hex color codes](https://www.color-hex.com/) or [names of basic colors](https://matplotlib.org/stable/gallery/color/named_colors.html) (Example: yellow). Default value: `#FFFFFF`
 
 ## Usage
 

@@ -142,6 +142,7 @@ for sorted_team in sorted_teams:
 
 prop = mfm.FontProperties(fname=font_path)
 
+plt.xticks(matches_axis, matches_axis, rotation='vertical')
 plt.legend(bbox_to_anchor=(1, 1), loc="upper left", prop=prop, facecolor=bg_color)
 plt.grid(axis="y")
 
