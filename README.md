@@ -36,6 +36,8 @@ There are currently five configurable options in config.ini:
 
 Once configuration is complete, execute the tools by launching go.exe. You will be prompted to select which match you wish to get data for.
 
+You will need to import the included .json file into OBS using the Scene Collection > Import menu option.
+
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change. We use [poetry](https://python-poetry.org/) for dependency management.
