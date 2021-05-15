@@ -33,6 +33,7 @@ graph_transparent = cp.get("rankings", "graph_transparent", fallback=True)
 bg_color = cp.get("rankings", "background_color", fallback="#FFFFFF")
 
 # Get league matches to find closest
+print("Loading match data...")
 url = f"{api_url}/contests/{contest_id}/sessions"
 r = requests.get(url)
 sessions = json.loads(r.content)
@@ -54,6 +55,7 @@ for side in closest["plannedMatches"]:
         selected_teams.append(selected)
 
 # Copy team logos for selected teams from Source Images to Schedule Images
+print("Copying team logo images...")
 for i in range(0, len(selected_teams)):
     shutil.copy(
         f"{work_dir}MJSL OBS TOOLS/Source Images/{selected_teams[i]['_id']}.png",
@@ -61,6 +63,7 @@ for i in range(0, len(selected_teams)):
     )
 
 # Generate Script Text files
+print("Generating script text data files...")
 utc = pytz.utc
 match_time = datetime.datetime.fromtimestamp(closest["scheduledTime"] / 1000)
 with open(f"{work_dir}/MJSL OBS TOOLS/Script Text/General/Time.txt", "w") as f:
@@ -108,6 +111,7 @@ for i in range(0, int(len(selected_teams) / 2)):
         )
 
 # Graph
+print("Generating rankings graph...")
 matches_axis = ["Start"]
 matches_passed = 0
 
@@ -162,3 +166,5 @@ plt.savefig(
     transparent=graph_transparent,
     facecolor=bg_color,
 )
+
+print("Process completed!")
