@@ -84,7 +84,13 @@ print(
     f"Match 4: {selected_teams[4]['name']}, {selected_teams[5]['name']}, {selected_teams[6]['name']}, {selected_teams[7]['name']}"
 )
 
-selected_match = int(input("Select your match: "))
+selected_match = None
+while selected_match is None:
+    try:
+        selected_match = int(input("Select your match: "))
+    except ValueError:
+        print("Value must be a single digit.")
+
 for i in range(0, int(len(selected_teams) / 2)):
     if selected_match % 2 == 0:
         shutil.copy(
