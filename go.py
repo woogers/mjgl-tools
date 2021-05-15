@@ -88,8 +88,12 @@ selected_match = None
 while selected_match is None:
     try:
         selected_match = int(input("Select your match: "))
+        assert selected_match < 5
     except ValueError:
-        print("Value must be a single digit.")
+        print("Value must be a single numerical digit.")
+    except AssertionError:
+        print("There are only four matches.")
+        selected_match = None
 
 for i in range(0, int(len(selected_teams) / 2)):
     if selected_match % 2 == 0:
