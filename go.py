@@ -109,7 +109,7 @@ while selected_match is None:
         print("There are only four matches.")
         selected_match = None
 
-for i in range(0, int(len(selected_teams) / 2)):
+for i in range(0, int(len(selected_teams))):
     if selected_match % 2 == 0:
         shutil.copy(
             f"{work_dir}/MJSL OBS TOOLS/Source Images/{selected_teams[i+4]['_id']}.png",
