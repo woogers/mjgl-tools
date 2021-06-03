@@ -74,20 +74,31 @@ with open(f"{work_dir}/MJSL OBS TOOLS/Script Text/General/Session.txt", "w") as 
     session_name = closest["name"]
     f.write(session_name)
 
-print(
-    f"Match 1: {selected_teams[0]['name']}, {selected_teams[1]['name']}, {selected_teams[2]['name']}, {selected_teams[3]['name']}"
-)
-print(
-    f"Match 2: {selected_teams[4]['name']}, {selected_teams[5]['name']}, {selected_teams[6]['name']}, {selected_teams[7]['name']}"
-)
-print(
-    f"Match 3: {selected_teams[0]['name']}, {selected_teams[1]['name']}, {selected_teams[2]['name']}, {selected_teams[3]['name']}"
-)
-print(
-    f"Match 4: {selected_teams[4]['name']}, {selected_teams[5]['name']}, {selected_teams[6]['name']}, {selected_teams[7]['name']}"
-)
-
 selected_match = None
+
+if len(selected_teams) == 8:
+    print(
+        f"Match 1: {selected_teams[0]['name']}, {selected_teams[1]['name']}, {selected_teams[2]['name']}, {selected_teams[3]['name']}"
+    )
+    print(
+        f"Match 2: {selected_teams[4]['name']}, {selected_teams[5]['name']}, {selected_teams[6]['name']}, {selected_teams[7]['name']}"
+    )
+    print(
+        f"Match 3: {selected_teams[0]['name']}, {selected_teams[1]['name']}, {selected_teams[2]['name']}, {selected_teams[3]['name']}"
+    )
+    print(
+        f"Match 4: {selected_teams[4]['name']}, {selected_teams[5]['name']}, {selected_teams[6]['name']}, {selected_teams[7]['name']}"
+    )
+elif len(selected_teams) == 4:
+    print(
+        f"Match 1: {selected_teams[0]['name']}, {selected_teams[1]['name']}, {selected_teams[2]['name']}, {selected_teams[3]['name']}"
+    )
+    selected_match = 1
+    print(
+        f"Match 1 automatically selected."
+    )
+
+
 while selected_match is None:
     try:
         selected_match = int(input("Select your match: "))
